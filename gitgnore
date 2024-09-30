@@ -1,0 +1,12 @@
+# Ignorar arquivos de configuração de banco de dados
+*.sql
+
+# Ignorar arquivos de log
+*.log
+
+# Ignorar arquivos temporários do sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar arquivos de backup
+*~
