@@ -1,0 +1,79 @@
+drop DATABASE GerenciamentoInventario;
+CREATE DATABASE GerenciamentoInventario;
+USE GerenciamentoInventario;
+
+CREATE TABLE Categorias (
+    categoriaID INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Produtos (
+    produtoID INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    categoriaID INT,
+    preco DECIMAL(10, 2) NOT NULL,
+    descricao TEXT,
+    quantidade_estoque INT NOT NULL,
+    fornecedorID INT,
+    FOREIGN KEY (categoriaID) REFERENCES Categorias(categoriaID)
+);
+
+CREATE TABLE Fornecedores (
+    fornecedorID INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    contato VARCHAR(50) NOT NULL,
+    endereco VARCHAR(255) NOT NULL
+);
+
+INSERT INTO Categorias (categoriaID, nome) VALUES
+(1, 'Eletrônicos'),
+(2, 'Móveis'),
+(3, 'Roupas');
+
+INSERT INTO Produtos (produtoID, nome, categoriaID, preco, descricao, quantidade_estoque, fornecedorID) VALUES
+(1, 'Smartphone', 1, 1500.00, 'Smartphone com 128GB de armazenamento', 100, NULL),
+(2, 'Sofá', 2, 2000.00, 'Sofá de três lugares', 50, NULL),
+(3, 'Camisa', 3, 100.00, 'Camisa de algodão', 100, NULL),
+(4, 'Laptop', 1, 3500.00, 'Laptop com 16GB de RAM', 30, NULL),
+(5, 'Mesa de Jantar', 2, 1200.00, 'Mesa de jantar para seis pessoas', 15, NULL);
+
+INSERT INTO Fornecedores (fornecedorID, nome, contato, endereco) VALUES
+(1, 'Fornecedor A', '1234-5678', 'Rua A, 123, Cidade A'),
+(2, 'Fornecedor B', '8765-4321', 'Avenida B, 456, Cidade B'),
+(3, 'Fornecedor C', '1122-3344', 'Praça C, 789, Cidade C');
+
+UPDATE Produtos SET fornecedorID = 1 WHERE produtoID IN (1, 4); 
+UPDATE Produtos SET fornecedorID = 2 WHERE produtoID IN (2, 5); 
+UPDATE Produtos SET fornecedorID = 3 WHERE produtoID = 3; 
+
+SELECT f.nome, f.contato, f.endereco
+FROM Fornecedores f
+JOIN Produtos p ON f.fornecedorID = p.fornecedorID
+WHERE p.preco > 1000.00;
+
+SELECT * FROM Produtos
+WHERE categoriaID = 1;
+
+SELECT * FROM Produtos
+WHERE quantidade_estoque > 0;
+
+UPDATE Produtos
+SET preco = 1600.00
+WHERE produtoID = 1; 
+
+UPDATE Categorias
+SET nome = 'Tecnologia'
+WHERE categoriaID = 1;
+
+UPDATE Fornecedores
+SET endereco = 'Nova Rua, 123, Cidade A'
+WHERE fornecedorID = 1;
+
+DELETE FROM Produtos
+WHERE produtoID = 3; 
+
+DELETE FROM Categorias
+WHERE categoriaID = 3; 
+
+DELETE FROM Fornecedores
+WHERE fornecedorID = 1; 
