@@ -1,0 +1,46 @@
+# Gerenciamento de Inventário
+
+Este projeto é um sistema simples de gerenciamento de inventário, desenvolvido em SQL. Ele permite gerenciar categorias, produtos e fornecedores, facilitando o acompanhamento do estoque e das informações de contato dos fornecedores.
+
+## Estrutura do Banco de Dados
+
+O banco de dados `GerenciamentoInventario` contém as seguintes tabelas:
+
+1. **Categorias**
+   - `categoriaID`: ID único da categoria (chave primária).
+   - `nome`: Nome da categoria.
+
+2. **Produtos**
+   - `produtoID`: ID único do produto (chave primária).
+   - `nome`: Nome do produto.
+   - `categoriaID`: ID da categoria (chave estrangeira).
+   - `preco`: Preço do produto.
+   - `descricao`: Descrição do produto.
+   - `quantidade_estoque`: Quantidade disponível em estoque.
+   - `fornecedorID`: ID do fornecedor (chave estrangeira).
+
+3. **Fornecedores**
+   - `fornecedorID`: ID único do fornecedor (chave primária).
+   - `nome`: Nome do fornecedor.
+   - `contato`: Informações de contato do fornecedor.
+   - `endereco`: Endereço do fornecedor.
+
+## Como Usar
+
+1. **Criar o Banco de Dados**: Execute o script SQL para criar o banco de dados e as tabelas.
+2. **Inserir Dados**: Utilize as instruções de inserção para adicionar categorias, produtos e fornecedores.
+3. **Realizar Consultas**: Execute consultas SQL para obter informações sobre produtos e fornecedores.
+4. **Atualizar e Deletar Dados**: Use as instruções de atualização e exclusão conforme necessário.
+
+## Requisitos
+
+- Um servidor de banco de dados MySQL ou MariaDB.
+- Acesso ao cliente MySQL para executar scripts SQL.
+
+## Contribuição
+
+Sinta-se à vontade para contribuir com melhorias ou novas funcionalidades. Abra uma issue ou um pull request!
+
+## Licença
+
+Este projeto está licenciado sob a [MIT License](LICENSE).
